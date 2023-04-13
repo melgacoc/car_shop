@@ -78,4 +78,59 @@ describe('Tests for car route', function () {
 
     expect(resolves).to.be.deep.equal(response);
   });
+
+  it('Should return null with an invalid id', async function () {
+    const response = null;
+    sinon.stub(Model, 'findById').resolves(response);
+
+    const service = new CarService();
+    const resolves = await service.getCarById('1111111');
+
+    expect(resolves).to.be.deep.equal(response);
+  });
+
+  it('Should update a valid car', async function () {
+    const response = new Car({
+      id: '6348513f34c397abcad040b2',
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    });
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(response);
+
+    const service = new CarService();
+    const resolves = await service.updateCar('6348513f34c397abcad040b2', {
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    });
+
+    expect(resolves).to.be.deep.equal(response);
+  });
+
+  it('Should return null with an invalid id when try to update', async function () {
+    const response = null;
+    sinon.stub(Model, 'findByIdAndUpdate').resolves(response);
+
+    const service = new CarService();
+    const resolves = await service.updateCar('1111111', {
+      model: 'Marea',
+      year: 2002,
+      color: 'Black',
+      status: true,
+      buyValue: 15.99,
+      doorsQty: 4,
+      seatsQty: 5,
+    });
+
+    expect(resolves).to.be.deep.equal(response);
+  });
 });
