@@ -14,17 +14,17 @@ class CarService {
   }
     
   public async newCar(car: ICar) {
-    const newCar = await this.carODM.newCar(car);
+    const newCar = await this.carODM.newVehicle(car);
     return this.createCarDomain(newCar);
   }
 
   public async getAllCars() {
-    const cars = await this.carODM.getAllCars();
+    const cars = await this.carODM.getAllVehicles();
     return cars.map((car: ICar) => this.createCarDomain(car));
   }
 
   public async getCarById(id: string) {
-    const car = await this.carODM.getCarById(id);
+    const car = await this.carODM.getVehicleById(id);
     if (!car) {
       return null;
     }
@@ -32,7 +32,7 @@ class CarService {
   }
 
   public async updateCar(id: string, body: object) {
-    const updatedCar = await this.carODM.updateCar(id, body);
+    const updatedCar = await this.carODM.updateVehicle(id, body);
     if (!updatedCar) {
       return null;
     }
