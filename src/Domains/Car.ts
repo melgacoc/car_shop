@@ -6,12 +6,14 @@ class Car extends Vehicle {
   private seatsQty: number;
 
   constructor(car: ICar) {
-    super(car.id,
+    super(
+      car.id,
       car.model,
       car.year,
       car.color,
       car.buyValue,
-      car.status);
+      car.status,
+    );
     this.doorsQty = car.doorsQty;
     this.seatsQty = car.seatsQty;
   }

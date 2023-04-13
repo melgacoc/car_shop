@@ -1,5 +1,3 @@
-import IVehicle from '../Interfaces/IVehicle';
-
 class Vehicle {
   protected id: string | undefined;
   protected model: string;
